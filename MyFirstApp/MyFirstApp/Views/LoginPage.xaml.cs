@@ -38,7 +38,7 @@ namespace MyFirstApp.Views
             User user = new User(Entry_Username.Text, Entry_Password.Text);
             if (user.CheckInformation())
             {
-                DisplayAlert("Login", "Login Success", "Oke");
+                await DisplayAlert("Login", "Login Success", "Oke");
                 //var result = await App.RestService.Login(user);
                 var result = new Token();
                 if (result != null)
@@ -47,12 +47,12 @@ namespace MyFirstApp.Views
                     //App.TokenDatabase.SaveToken(result);
                    if(Device.RuntimePlatform == Device.Android)
                     {
-                        Application.Current.MainPage = new NavigationPage(new Dashboard());
+                        Application.Current.MainPage = new NavigationPage(new MasterDetail());
                     }
                 }
             } else
             {
-                DisplayAlert("Login", "Login Failed, empty username or password", "Oke");
+                await DisplayAlert("Login", "Login Failed, empty username or password", "Oke");
             }
         }
     }
