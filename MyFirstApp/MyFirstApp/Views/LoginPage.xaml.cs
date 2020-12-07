@@ -1,4 +1,5 @@
 ﻿using MyFirstApp.Models;
+using MyFirstApp.Views.Menu;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -38,10 +39,16 @@ namespace MyFirstApp.Views
             if (user.CheckInformation())
             {
                 DisplayAlert("Login", "Login Success", "Oke");
-                var result = await App.RestService.Login(user);
-                if (result.access_token != null)
+                //var result = await App.RestService.Login(user);
+                var result = new Token();
+                if (result != null)
                 {
-                    App.UserDatabase.SaveUser(user);
+                    //App.UserDatabase.SaveUser(user);
+                    //App.TokenDatabase.SaveToken(result);
+                   if(Device.RuntimePlatform == Device.Android)
+                    {
+                        Application.Current.MainPage = new NavigationPage(new Dashboard());
+                    }
                 }
             } else
             {
